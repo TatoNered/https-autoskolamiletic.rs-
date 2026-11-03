@@ -1,0 +1,541 @@
+<title>SEO audit Auto škola Miletić</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: jednokolonski izveštaj, proza do 68ch, podaci u punoj širini; sekcije razdvojene isprekidanom linijom kao na kolovozu */
+:root{
+  --bg:#EDEFF2;
+  --surface:#FFFFFF;
+  --surface-2:#F6F7F9;
+  --ink:#10161C;
+  --muted:#5C6773;
+  --rule:#D2D8DE;
+  --accent:#C98A00;
+  --accent-soft:#FBF1D8;
+  --crit:#A81F13;
+  --crit-soft:#FBE7E4;
+  --warn:#8A5A00;
+  --warn-soft:#FAEFDB;
+  --ok:#0F6B46;
+  --ok-soft:#E0F1E8;
+  --font-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Newsreader",Georgia,"Times New Roman",serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1317;
+    --surface:#151D23;
+    --surface-2:#1B242B;
+    --ink:#E8ECEF;
+    --muted:#96A3AE;
+    --rule:#2A353E;
+    --accent:#F2C04A;
+    --accent-soft:#2B2414;
+    --crit:#F08C80;
+    --crit-soft:#2E1715;
+    --warn:#E0AC5B;
+    --warn-soft:#2B2213;
+    --ok:#5FC695;
+    --ok-soft:#12291F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1317;
+  --surface:#151D23;
+  --surface-2:#1B242B;
+  --ink:#E8ECEF;
+  --muted:#96A3AE;
+  --rule:#2A353E;
+  --accent:#F2C04A;
+  --accent-soft:#2B2414;
+  --crit:#F08C80;
+  --crit-soft:#2E1715;
+  --warn:#E0AC5B;
+  --warn-soft:#2B2213;
+  --ok:#5FC695;
+  --ok-soft:#12291F;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:860px;
+  margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0;
+}
+p{margin:0 0 1em;max-width:68ch}
+ul,ol{margin:0 0 1em;padding-left:1.25em;max-width:68ch}
+li{margin-bottom:.4em}
+strong{font-weight:600}
+a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+h1,h2,h3,h4{font-family:var(--font-display);text-wrap:balance;margin:0}
+.eyebrow{
+  font-family:var(--font-display);
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 .6em;
+}
+.mono{font-family:var(--font-mono);font-size:.86em}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- hero ---------- */
+.hero{padding-block:56px 40px;border-bottom:1px solid var(--rule)}
+.plate{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--surface);border:2px solid var(--ink);border-radius:5px;
+  padding:4px 12px 4px 6px;margin-bottom:26px;
+}
+.plate .L{
+  font-family:var(--font-display);font-weight:800;font-size:22px;line-height:1;
+  color:var(--crit);border:2px solid var(--crit);border-radius:3px;padding:3px 8px;
+}
+.plate .who{font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.hero h1{font-size:clamp(34px,6vw,54px);font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.hero .lede{font-size:clamp(19px,2.4vw,23px);line-height:1.5;margin-top:22px;color:var(--ink)}
+.hero .lede b{background:var(--accent-soft);padding:0 .15em;box-decoration-break:clone}
+.meta-row{
+  display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:28px;
+  font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--muted);
+}
+
+/* ---------- stat strip ---------- */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:4px;
+  overflow:hidden;margin:34px 0 0;
+}
+.stat{background:var(--surface);padding:16px 14px;min-width:0}
+.stat .v{font-family:var(--font-display);font-weight:700;font-size:28px;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .k{font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.stat.bad .v{color:var(--crit)}
+.stat.good .v{color:var(--ok)}
+
+/* ---------- sections ---------- */
+section{padding-block:46px}
+section+section{border-top:1px solid var(--rule)}
+.roadline{
+  height:6px;margin:0;border:0;
+  background:repeating-linear-gradient(90deg,var(--accent) 0 34px,transparent 34px 60px);
+  opacity:.65;
+}
+h2{font-size:clamp(25px,3.6vw,33px);font-weight:700;letter-spacing:-.018em;line-height:1.14;margin-bottom:18px}
+h2+.sub{color:var(--muted);margin-top:-10px;font-size:18px}
+h3{font-size:20px;font-weight:700;margin:32px 0 10px;letter-spacing:-.01em}
+h4{font-size:15px;font-weight:700;margin:22px 0 6px}
+
+/* ---------- findings ---------- */
+.find{
+  background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+  padding:18px 18px 14px;margin-top:14px;
+}
+.find.c-crit{border-left:4px solid var(--crit)}
+.find.c-warn{border-left:4px solid var(--warn)}
+.find.c-ok{border-left:4px solid var(--ok)}
+.find-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:8px}
+.find-head h3{margin:0;font-size:18px}
+.chip{
+  font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap;
+}
+.chip.crit{background:var(--crit-soft);color:var(--crit)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.find p{font-size:16px;margin-bottom:.7em}
+.find p:last-child{margin-bottom:0}
+.fix{
+  font-size:15px;background:var(--surface-2);border-radius:3px;padding:10px 12px;margin-top:10px;
+}
+.fix b{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+code{font-family:var(--font-mono);font-size:.84em;background:var(--surface-2);padding:1px 5px;border-radius:3px;overflow-wrap:break-word;white-space:nowrap}
+.find .mono{color:var(--muted)}
+
+/* ---------- tables ---------- */
+.tscroll{overflow-x:auto;margin:18px 0;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:460px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{
+  font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);background:var(--surface-2);white-space:nowrap;
+}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.us td{background:var(--accent-soft);font-weight:500}
+tr.us td:first-child{font-weight:600}
+
+/* ---------- callout ---------- */
+.call{
+  background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--accent);
+  border-radius:4px;padding:22px;margin:26px 0;
+}
+.call h3{margin-top:0}
+.call p:last-child{margin-bottom:0}
+
+/* ---------- phases ---------- */
+.phase{display:grid;grid-template-columns:86px 1fr;gap:0 20px;border-top:1px solid var(--rule);padding-block:20px}
+.phase:first-of-type{border-top:0}
+.phase .when{
+  font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--accent);padding-top:3px;
+}
+.phase .body{min-width:0}
+.phase h3{margin:0 0 6px;font-size:18px}
+.phase ul{margin-bottom:0;font-size:16px}
+@media (max-width:540px){
+  .phase{grid-template-columns:1fr;gap:6px}
+  .phase .when{padding-top:0}
+}
+
+/* ---------- deliverables ---------- */
+.deliv{list-style:none;padding:0;max-width:68ch}
+.deliv li{display:grid;grid-template-columns:22px 1fr;gap:10px;margin-bottom:11px;font-size:16px}
+.deliv li::before{
+  content:"";width:13px;height:13px;margin-top:7px;border-radius:2px;
+  background:var(--accent);
+}
+
+/* ---------- price ---------- */
+.price{
+  background:var(--surface);border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin:26px 0;
+}
+.price-top{padding:26px 22px;border-bottom:1px solid var(--rule)}
+.price-fig{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px 14px}
+.price-fig .big{font-family:var(--font-display);font-weight:800;font-size:clamp(40px,8vw,60px);line-height:.95;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.price-fig .per{font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--muted);padding-bottom:8px}
+.price-plus{padding:18px 22px;border-bottom:1px solid var(--rule);font-size:16px;background:var(--surface-2)}
+.price-plus p{margin:0;max-width:60ch}
+.price-cmp{padding:18px 22px;font-size:16px}
+.price-cmp p{margin:0;max-width:60ch}
+.strike{text-decoration:line-through;text-decoration-thickness:2px;color:var(--muted)}
+
+/* ---------- closing ---------- */
+.closing{padding-block:48px 64px;border-top:1px solid var(--rule)}
+.closing h2{margin-bottom:14px}
+footer{
+  padding-block:22px 40px;border-top:1px solid var(--rule);
+  font-family:var(--font-display);font-size:12px;color:var(--muted);letter-spacing:.03em;
+}
+.note{font-size:14px;color:var(--muted);max-width:68ch;margin-top:1.2em}
+@media (prefers-reduced-motion:no-preference){
+  a{transition:text-decoration-color .15s}
+}
+</style>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="plate"><span class="L">L</span><span class="who">Auto škola Miletić · Zvezdara</span></div>
+    <h1>SEO audit i plan rasta</h1>
+    <p class="lede">Sajt je uredno napravljen i brz, cena je niža od konkurencije, a <b>5,0 ocena od 2.217 ljudi na Google mapama</b> je nešto što nijedna auto škola u okolini nema. Problem je u tome što deo upita sa sajta ne stiže do vas, a Google od svega ostalog vidi vrlo malo — i to se rešava za nekoliko nedelja.</p>
+    <div class="meta-row">
+      <span>autoskolamiletic.rs</span>
+      <span>Ustanička 266, Zvezdara</span>
+      <span>Analiza: 3. novembar 2026.</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="v num">8</div><div class="k">stranica na sajtu</div></div>
+      <div class="stat bad"><div class="v num">0</div><div class="k">upita stiže sa kontakt forme</div></div>
+      <div class="stat bad"><div class="v num">0</div><div class="k">alata za analitiku</div></div>
+      <div class="stat bad"><div class="v num">17.</div><div class="k">mesto za „auto škola beograd“</div></div>
+      <div class="stat good"><div class="v num">1.</div><div class="k">mesto za „auto škola zvezdara“</div></div>
+      <div class="stat good"><div class="v num">5,0</div><div class="k">Google ocena · 2.217</div></div>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow">Rezime</p>
+    <h2>Gde ste sada, u pet rečenica</h2>
+    <p><strong>Kontakt forma na sajtu ne šalje poruke nikome.</strong> Posetilac vidi poruku da je upit poslat, ali podaci se nigde ne čuvaju i ne stižu na mejl — u kodu je to ostala „demo“ verzija forme. Pored toga, na sajtu nema nijednog alata za merenje, pa se ne zna koliko ljudi dolazi i koliko zove.</p>
+    <p>Tehnička osnova je dobra: sajt je brz (PageSpeed na mobilnom 96/100), ima strukturirane podatke za auto školu i pitanja, ispravne naslove i Open Graph oznake. Ali svaka stranica postoji na <strong>dve adrese</strong>, a meni vodi na onu koju sam sajt ne označava kao glavnu.</p>
+    <p>Za „auto škola zvezdara“ sajt je već <strong>prvi u Google-u</strong>. Za širi upit „auto škola beograd“ je tek <strong>17.</strong> — iza škola koje imaju po 70–100 stranica: cenovnik, tekstove, stranice po kategorijama i delovima grada. Kod vas je osam stranica, bez cenovnika i bez ijednog teksta.</p>
+    <p>Najveća prednost je Google profil: 2.217 ocena sa prosekom 5,0 — više od tri škole iz lokalnog bloka na mapi zajedno. Ta prednost se na sajtu skoro ne koristi.</p>
+    <p>Ukupno: nema ni jednog problema koji zahteva prepravku sajta od nule. Sve navedeno su ispravke u postojećem kodu i dodavanje sadržaja.</p>
+  </section>
+
+  <hr class="roadline">
+
+  <section>
+    <p class="eyebrow">Tehnička analiza</p>
+    <h2>Šta smo pronašli</h2>
+    <p class="sub">Poređano po tome koliko vas trenutno košta, ne po tome koliko je teško popraviti.</p>
+
+    <div class="find c-crit">
+      <div class="find-head"><h3>Kontakt forma ne šalje upite</h3><span class="chip crit">Kritično</span></div>
+      <p>Forma na stranici <code>/kontakt</code> (ime, prezime, email, telefon, poruka) u fajlu <code>js/main.js</code> ima obradu sa komentarom programera <em>„Demo slanje kontakt forme (bez backend-a)“</em>. Skripta zaustavlja slanje, prikaže poruku o uspehu i isprazni formu. <strong>Podaci ne odlaze ni na mejl ni u bazu.</strong></p>
+      <p>Isto važi za formu za prijavu na novosti u futeru svake stranice: nema adresu slanja ni obradu, pa uneti mejl ne stiže nigde.</p>
+      <p>Posledica: svako ko je ostavio upit preko sajta misli da će ga neko pozvati — a škola za njega ne zna.</p>
+      <div class="fix"><b>Rešenje</b>Povezivanje forme sa stvarnim slanjem (sajt je na Netlify-u, pa je najbrže Netlify Forms, ili slanje na mejl / Viber / Telegram), test slanja i merenje svakog poslatog upita. Formu za novosti povezati ili ukloniti. Posao od nekoliko sati.</div>
+    </div>
+
+    <div class="find c-crit">
+      <div class="find-head"><h3>Nema nikakvog merenja</h3><span class="chip crit">Kritično</span></div>
+      <p>U kodu sajta nema Google Analytics 4, Google Tag Manager-a, Meta piksela niti bilo kog drugog brojača. Ne zna se koliko ljudi dolazi iz Google-a, koliko klikne na broj telefona, koje stranice dovode kandidate. Takođe nema podataka iz Chrome-a o stvarnoj brzini (CrUX) — sajt još nema dovoljno posetilaca da bi ih Google merio.</p>
+      <div class="fix"><b>Rešenje</b>GA4 + Tag Manager, praćenje klika na telefon, slanja forme i prelaska na Instagram; povezivanje Google Search Console i slanje sitemap-a. To je prva stvar koju postavljamo, u prvoj nedelji.</div>
+    </div>
+
+    <div class="find c-crit">
+      <div class="find-head"><h3>Svaka stranica postoji na dve adrese, a meni vodi na pogrešnu</h3><span class="chip crit">Kritično</span></div>
+      <p>Stranica „O nama“ se otvara i na <code>/o-nama.html</code> i na <code>/o-nama</code>. Obe vraćaju isti sadržaj sa kodom 200 — nema preusmerenja. Isto važi za svih sedam unutrašnjih stranica. Canonical oznaka i sitemap pokazuju na <code>.html</code> verziju, a <strong>svi linkovi u meniju, futeru i dugmićima vode na verziju bez <code>.html</code></strong>.</p>
+      <p>Posledica: Google dobija suprotne signale — interni linkovi ne idu na stranice koje sajt proglašava glavnim, a crawler obilazi duple adrese.</p>
+      <div class="fix"><b>Rešenje</b>Izabrati jednu verziju i svuda je koristiti. Najmanje izmena: 301 preusmerenje sa <code>.html</code> na adrese bez ekstenzije (koje već koristi ceo meni) i ispravka canonical oznaka i sitemap-a. Posao od pola dana.</div>
+    </div>
+
+    <div class="find c-warn">
+      <div class="find-head"><h3>Pogrešan telefon u strukturiranim podacima</h3><span class="chip warn">Važno</span></div>
+      <p>Sajt već ima JSON-LD razmetanje (<code>DrivingSchool</code> + <code>LocalBusiness</code>, <code>FAQPage</code>, <code>BreadcrumbList</code>) — to je dobro. Ali telefon u razmetanju je <code>+381634248426</code>, sa jednom cifrom viška. Na sajtu i na Google mapama je <strong>063 424 826</strong>.</p>
+      <p>Neusaglašeni podaci (naziv, adresa, telefon) slabe lokalno rangiranje. Slično: u katalogu feruvi.rs piše da radite svaki dan 09–17, a na sajtu da nedeljom ne radite; u pretrazi se pojavljuju i <strong>dve različite Facebook stranice</strong> škole (oko 640 i oko 3.600 pratilaca).</p>
+      <div class="fix"><b>Rešenje</b>Ispravka telefona u razmetanju na svim stranicama na <code>+38163424826</code>, dopuna razmetanja tipovima <code>Course</code> i <code>Offer</code> (B kategorija, 40 časova, cena), ispravka radnog vremena u katalozima i jedna glavna Facebook stranica.</div>
+    </div>
+
+    <div class="find c-warn">
+      <div class="find-head"><h3>Nema stranice sa cenovnikom</h3><span class="chip warn">Važno</span></div>
+      <p>Cene su na sajtu, ali samo kao blok na početnoj (teorija 14.000, praksa 56.000 u dve rate, ukupno 79.999 RSD). Za upit „auto škola cena b kategorija beograd“ <strong>ceo prvi deset rezultata čine stranice cenovnika i tekst o ceni</strong> — na prvom mestu je tekst škole Team „Koliko košta polaganje B kategorije u Beogradu 2026“. Vašeg sajta među prvih 40 rezultata nema.</p>
+      <div class="fix"><b>Rešenje</b>Stranica <code>/cenovnik</code> sa tabelom po stavkama, šta je uključeno (teorija, praksa, ispiti), plaćanje na rate, dodatni troškovi (lekarsko, prva pomoć) i ukupan trošak. Uz to tekst „Koliko košta vozačka u Beogradu 2026“.</div>
+    </div>
+
+    <div class="find c-warn">
+      <div class="find-head"><h3>Premalo teksta na unutrašnjim stranicama</h3><span class="chip warn">Važno</span></div>
+      <p>Bez menija i futera: Galerija ima oko 75 reči, Kontakt 138, Defanzivna vožnja 322, O nama 348, Priprema za ispit 388, Obuka za početnike 391. I u tom broju su naslovi, dugmad i ponovljeni blokovi. Stranica sa 200–300 reči ne može da se rangira za upit za koji se bori dvadesetak škola.</p>
+      <div class="fix"><b>Rešenje</b>Proširenje tih stranica na 600–900 reči stvarnog sadržaja: kod defanzivne vožnje — konkretne situacije i tehnike; kod pripreme za ispit — kako izgleda ispit korak po korak; u galeriji — opisi vozila i poligona; na kontaktu — kako se stiže do Ustaničke, parking, javni prevoz, radno vreme po danima.</div>
+    </div>
+
+    <div class="find c-warn">
+      <div class="find-head"><h3>Link u meniju vodi posetioce sa sajta</h3><span class="chip warn">Važno</span></div>
+      <p>U padajućem meniju „Obuka“ stoji stavka „Testovi za pripremu ispita“ koja vodi direktno na <code>servisi.euprava.gov.rs</code>. Posetilac koji je došao po testove odlazi sa vašeg sajta jednim klikom.</p>
+      <div class="fix"><b>Rešenje</b>Sopstvena stranica sa uputstvom kako se testovi rešavaju i šta se najčešće greši, sa linkom na zvanični servis u tekstu, a ne u meniju.</div>
+    </div>
+
+    <div class="find c-warn">
+      <div class="find-head"><h3>Naslovi i opisi se režu u rezultatima pretrage</h3><span class="chip warn">Važno</span></div>
+      <p>Početna ima naslov od 65 znakova, Kontakt 64 — Google obično prikazuje oko 60. Meta opisi su predugački na početnoj (170 znakova), „O nama“ (173) i „Obuka“ (197), pa se kraj ne vidi.</p>
+      <div class="fix"><b>Rešenje</b>Naslovi do 55–60 znakova, opisi 140–155, tako da opis nastavlja naslov, a ne da ga ponavlja. U opis ide ono što vas razlikuje: ocena, cena, rate.</div>
+    </div>
+
+    <div class="find c-ok">
+      <div class="find-head"><h3>Sitnije stvari</h3><span class="chip ok">Sitno</span></div>
+      <ul>
+        <li>Slike su teške: logo <code>logo-badge.png</code> 151 KB, a prikazuje se na oko 62 px; glavna slika 257 KB (1051×1400 px, prikaz oko 470 px); promo slika 321 KB. Nema WebP formata ni više veličina (<code>srcset</code>). PageSpeed to navodi kao prostor za uštedu, ali ukupna ocena je i dalje 96.</li>
+        <li>Na šest slika (Google ikonice kod recenzija) <code>alt</code> je prazan — za ukrasne ikonice to je prihvatljivo.</li>
+        <li>Od bezbednosnih zaglavlja postoji samo HSTS; nema <code>Content-Security-Policy</code>, <code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>. Nije faktor rangiranja, ali je dobra praksa.</li>
+        <li>Na sajtu piše „2.147 ocena“, a na Google profilu ih je već 2.217.</li>
+        <li>Poslednja objava na Google profilu je od 16. juna 2026. i najavljuje grupe „početkom jula“ — profil se ne ažurira.</li>
+        <li>Svi datumi izmene u sitemap-u su isti (5. jul 2026) i ne menjaju se.</li>
+      </ul>
+      <div class="fix"><b>Rešenje</b>Ulazi u redovan mesečni rad, bez posebnog troška.</div>
+    </div>
+
+    <h3>Šta sajt već radi dobro</h3>
+    <p>Da bude jasno šta ne treba dirati: HTTPS je postavljen, <code>http://</code> i <code>www</code> preusmeravaju na glavnu adresu, nepostojeće stranice vraćaju 404; <code>robots.txt</code> je otvoren i navodi sitemap; svaka stranica ima svoj naslov i H1; postoji razmetanje za auto školu, pitanja i odgovore i putanju (breadcrumb); Open Graph i Twitter oznake su na mestu; PageSpeed na mobilnom: performanse 96, pristupačnost 96, preporuke 100, SEO 100 (LCP 1,6 s, CLS 0). To je solidna osnova — zato je ovo posao ispravljanja, a ne pisanja sajta iznova.</p>
+  </section>
+
+    <hr class="roadline">
+
+  <section>
+    <p class="eyebrow">Konkurencija</p>
+    <h2>Sa kim se takmičite i gde ste bolji</h2>
+    <p>Katalog PlanPlus samo za Zvezdaru navodi dvadesetak auto škola. Po ceni ste najpovoljniji od proverenih, ali konkurenti koji su ispred vas u pretrazi imaju mnogo više sadržaja.</p>
+
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Auto škola</th><th>Ukupna cena B</th><th>Cenovnik</th><th>Stranica u sitemap-u</th><th>Tekstovi</th></tr></thead>
+        <tbody>
+          <tr class="us"><td>Miletić (Zvezdara)</td><td class="n">79.999 RSD</td><td>blok na početnoj</td><td class="n">8</td><td>nema</td></tr>
+          <tr><td>Bonata Drive (Zvezdara)</td><td class="n">88.000 RSD</td><td>blok na početnoj</td><td>—</td><td>—</td></tr>
+          <tr><td>Team (Novi Beograd / Medaković)</td><td class="n">99.000 / 95.000 RSD</td><td><code>/cenovnik/</code></td><td class="n">103</td><td>oko 30 tekstova</td></tr>
+          <tr><td>Fest (Zvezdara)</td><td>nije proverena*</td><td><code>/cenovnik/</code></td><td class="n">69</td><td>blog</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Cene su preuzete sa sajtova konkurenata 3. novembra 2026. onako kako ih oni prikazuju. Team: za kandidate bez vozačke dozvole, sa oba ispita. Miletić: 79.999 RSD uključuje teoriju, praksu i po jedan izlazak na teorijski i praktični ispit (prema objavi škole). *Sajt Fest-a blokira automatske provere, pa cenu nismo uneli.</p>
+
+    <p>Dve stvari koje iz ovoga slede. Prva: <strong>vi ste najpovoljniji, a to se ne vidi u pretrazi</strong> — nema stranice cenovnika koja bi se rangirala za upite o ceni. Druga: lideri (Team, Fest) skupljaju posetioce tekstovima, stranicama po kategorijama i delu grada. Tu razliku je moguće nadoknaditi — vaša tehnička osnova i ocene su jače od njihovih.</p>
+  </section>
+
+  <hr class="roadline">
+
+  <section>
+    <p class="eyebrow">Tačke rasta</p>
+    <h2>Odakle dolazi novi saobraćaj</h2>
+
+    <h3>1. Cenovnik i troškovi</h3>
+    <p>Jedna stranica koja odgovara na pitanje koje svaki kandidat ima pre poziva. Cilja upite: <span class="mono">cena auto škole Beograd · koliko košta polaganje za vozačku · cena B kategorije 2026 · auto škola na rate Beograd</span>. Pošto ste povoljniji od proverenih konkurenata, ova stranica radi dvostruko — dovodi saobraćaj i zatvara prodaju.</p>
+
+    <h3>2. Informativni tekstovi</h3>
+    <p>Deset tema koje pokrivaju put kandidata od „razmišljam o vozačkoj“ do „polažem sledeće nedelje“. Svaki tekst se interno vezuje na cenovnik i na stranicu obuke.</p>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Tema</th><th>Namera posetioca</th></tr></thead>
+        <tbody>
+          <tr><td>Šta je potrebno za upis u auto školu</td><td>dokumenti, godine, lekarsko — pre odluke</td></tr>
+          <tr><td>Koliko traje obuka za B kategoriju</td><td>planiranje vremena</td></tr>
+          <tr><td>Koliko košta vozačka dozvola u Beogradu 2026</td><td>poređenje cena</td></tr>
+          <tr><td>Kako položiti teorijski ispit iz prve</td><td>priprema</td></tr>
+          <tr><td>Poligon: parkiranje, polukružno okretanje, uzbrdica</td><td>strah od praktičnog dela</td></tr>
+          <tr><td>Lekarsko uverenje za vozačku — gde i koliko</td><td>konkretan korak</td></tr>
+          <tr><td>Kurs prve pomoći za vozačku dozvolu</td><td>konkretan korak</td></tr>
+          <tr><td>Upis sa 16 godina i probna vozačka</td><td>roditelji i maturanti</td></tr>
+          <tr><td>Liste čekanja za ispit u Beogradu</td><td>aktuelna tema u medijima</td></tr>
+          <tr><td>Defanzivna vožnja — šta je i kome treba</td><td>vaša usluga koju niko ne traži po imenu</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>3. Lokalne stranice</h3>
+    <p>Ljudi traže školu blizu sebe: <span class="mono">auto škola Konjarnik · auto škola Ustanička · auto škola Mali Mokri Lug · auto škola Zeleno brdo · auto škola Mirijevo</span>. Kratke stranice po kvartu — svaka sa svojim tekstom, kako se stiže, gde je poligon i gde se parkira. Bez kopiranja istog teksta sa izmenjenim imenom kvarta, jer to Google prepoznaje. Fest već ima posebnu stranicu za Zvezdaru i sa njom je u prvih deset za „auto škola beograd“.</p>
+
+    <h3>4. Google profil i lokalni rezultati</h3>
+    <p>2.217 ocena i prosek 5,0 je najveća prednost koju imate, a trenutno radi samo na mapi. Tu se radi: redovne objave (poslednja je iz juna), odgovaranje na recenzije, fotografije vozila i poligona sa opisima, provera kategorija i usluga, i merenje poziva sa profila. Paralelno — provera i upis u Apple Business Connect, Bing Places i OpenStreetMap.</p>
+
+    <h3>5. Ocene i cena na samom sajtu</h3>
+    <p>Na sajtu treba da stoji tačan i ažuran broj Google ocena, sa novijim recenzijama i linkom na profil, i cena vidljiva odmah. Napomena: Google ne prikazuje zvezdice u rezultatima za recenzije koje auto škola sama postavi o sebi, i ne dozvoljava prenos Google recenzija u razmetanje — zato ocene koristimo tamo gde rade: na profilu, na mapi i na sajtu kao argument pri odluci.</p>
+  </section>
+
+  <hr class="roadline">
+
+  <section>
+    <p class="eyebrow">Linkovi</p>
+    <h2>Strategija izgradnje linkova</h2>
+    <p>Prema alatu za analizu linkova: <strong>6 linkova sa 4 domena, DR 0</strong>. Link sa <span class="mono">sredito.com</span> vodi na staru <code>http://</code> adresu, a kod <span class="mono">webtrag.rs</span> i <span class="mono">spesdriver.com</span> anchor je goli naziv domena — to se ispravlja mejlom, bez troška. Niša nije zahtevna: dovoljno je 30–40 urednih, lokalno relevantnih domena.</p>
+
+    <div class="phase">
+      <div class="when">Korak 1</div>
+      <div class="body">
+        <h3>Osnova — bez troška</h3>
+        <ul>
+          <li>Google profil, Apple Business Connect, Bing Places, OpenStreetMap</li>
+          <li>Srpski katalozi i oglasi (navidiku, planplus, 011info, feruvi, halooglasi i sl.) sa usaglašenim podacima</li>
+          <li>Ispravka postojećih linkova i profili na društvenim mrežama sa linkom na sajt</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="when">Korak 2</div>
+      <div class="body">
+        <h3>Lokalno i tematski</h3>
+        <ul>
+          <li>Srednje škole na Zvezdari, okolne firme (servisi, osiguranje), auto portali i lokalni mediji</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="when">Korak 3</div>
+      <div class="body">
+        <h3>Kupovina — do 50 € mesečno</h3>
+        <ul>
+          <li>Jedan do dva linka mesečno sa tematskih ili lokalnih <code>.rs</code> sajtova, unutar smislenog teksta, ravnomerno i sa prirodnim anchorima</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="roadline">
+
+  <section>
+    <p class="eyebrow">Plan rada</p>
+    <h2>Kako to izgleda po fazama</h2>
+
+    <div class="phase">
+      <div class="when">Faza 1</div>
+      <div class="body">
+        <h3>Upiti, tehnika i merenje</h3>
+        <ul>
+          <li>Ispravna forma, Search Console i Analytics 4, praćenje poziva i upita</li>
+          <li>Jedinstvene adrese i 301 preusmerenja, ispravke razmetanja, naslova, opisa i slika</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Faza 2</div>
+      <div class="body">
+        <h3>Sadržaj i lokalno</h3>
+        <ul>
+          <li>Cenovnik, stranica o testovima, proširene postojeće stranice, prve lokalne stranice</li>
+          <li>Doteran Google profil i usaglašeni katalozi</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Faza 3</div>
+      <div class="body">
+        <h3>Širenje i održavanje</h3>
+        <ul>
+          <li>Redovni tekstovi, ostale lokalne stranice, linkovi po planu</li>
+          <li>Rad na konverziji i mesečni izveštaj: pozicije, saobraćaj, pozivi</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="roadline">
+
+  <section>
+    <p class="eyebrow">Šta dobijate</p>
+    <h2>Konkretno, svakog meseca</h2>
+    <ul class="deliv">
+      <li>Sve tehničke ispravke na sajtu — radimo ih sami, bez dodatnog programera i bez dodatne naplate</li>
+      <li>Tekstove pisane za sajt auto škole u Beogradu, na srpskom, sa pravom terminologijom i stvarnim brojevima</li>
+      <li>Ispravne strukturirane podatke za školu, kurs i cenu</li>
+      <li>Vođenje Google profila: objave, usluge, fotografije, odgovori na recenzije</li>
+      <li>Linkove po planu iznad — redovno, umereno, bez rizika od kazne</li>
+      <li>Praćenje pozicija po svim ciljanim upitima, sa poređenjem sa konkurencijom</li>
+      <li>Merenje poziva i upita sa sajta, da se zna šta je donelo kandidata, a ne samo šta je donelo klik</li>
+      <li>Jedan izveštaj mesečno, napisan ljudski: šta je urađeno, šta se promenilo, šta radimo sledeće</li>
+      <li>Odgovor na pitanje u roku od jednog radnog dana, tokom celog trajanja</li>
+    </ul>
+  </section>
+
+  <hr class="roadline">
+
+  <section>
+    <p class="eyebrow">Cena</p>
+    <h2>Koliko to košta</h2>
+
+    <div class="price">
+      <div class="price-top">
+        <div class="price-fig">
+          <span class="big">300 €</span>
+          <span class="per">mesečno · sve navedeno uključeno</span>
+        </div>
+      </div>
+      <div class="price-plus">
+        <p>Dodatno <strong>do 50 € mesečno za kupovinu linkova</strong>, i to tek kada osnova i sadržaj budu na mestu. Taj budžet je odvojen i ide u celosti na linkove — pre svake kupovine dobijate spisak sajtova i odobravate ga. Ako se u nekom mesecu ne nađe ništa što vredi, ne troši se.</p>
+      </div>
+      <div class="price-cmp">
+        <p>Tehnički razvoj i izrada novih stranica su uključeni u cenu — ne naplaćuju se posebno.</p>
+      </div>
+    </div>
+
+    <div class="call">
+      <h3>Šta to znači u kandidatima</h3>
+      <p>Pun kurs kod vas je 79.999 dinara, što je oko 680 €. Mesečni budžet od 300 € se vraća jednim dodatnim kandidatom na svaka dva meseca. A prvi korak — ispravna forma — vraća kandidate koji već sada pišu preko sajta, a do vas ne stižu.</p>
+    </div>
+    <p class="note">Preračun u evre po kursu od oko 117 dinara za evro, novembar 2026.</p>
+  </section>
+
+  <section class="closing">
+    <h2>Predlog za početak</h2>
+    <p>Prva faza su upiti, tehnika i merenje — to je deo gde se najviše dobija najmanjim trudom i gde se rezultat vidi najbrže. Posle te faze imate formu koja radi, povezan Search Console, čiste adrese i tačne podatke o tome odakle vam dolaze kandidati. Na osnovu toga se mirno odlučuje da li idemo dalje.</p>
+    <p>Ako vam se plan čini u redu, počinjemo od ispravki na sajtu — za njih nam treba samo pristup hostingu (Netlify) ili kontakt osobe koja održava sajt.</p>
+  </section>
+
+  <footer>
+    SEO audit · autoskolamiletic.rs · 3. novembar 2026.
+  </footer>
+
+</div>
